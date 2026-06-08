@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carácter de Dios para mi País - Manual Carta V3</title>
-    <!-- Tailwind CSS para el diseño premium -->
+    <title>Carácter de Dios para mi País - Manual Carta V3.1</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Iconos Lucide para la interfaz limpia -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
@@ -24,7 +22,7 @@
         @media print {
             @page {
                 size: letter;
-                margin: 0.4in; /* Margen de seguridad estándar para impresoras domésticas y de oficina */
+                margin: 0.4in;
             }
             body {
                 background: white !important;
@@ -34,6 +32,830 @@
             .no-print {
                 display: none !important;
             }
+            .print-area {
+                display: block !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            /* Salto de página forzado e inquebrantable */
+            .page-break {
+                page-break-before: always !important;
+                break-before: page !important;
+                display: block !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+            }
+            .printable-page {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0.1in 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: 100% !important;
+                page-break-inside: avoid !important;
+                background: white !important;
+                display: flex !important; /* Fuerza a que se muestre al imprimir */
+            }
+            /* Ajustes finos de tablas para impresión nítida */
+            table {
+                width: 100% !important;
+                border: 1px solid #000 !important;
+                border-collapse: collapse !important;
+            }
+            th, td {
+                border: 1px solid #000 !important;
+                padding: 6px !important;
+                color: #000 !important;
+                background: transparent !important;
+            }
+            blockquote, .citation-box {
+                border-left: 3px solid #000 !important;
+                background: #fafafa !important;
+            }
+        }
+
+        /* Estilización de páginas emulando papel físico Carta */
+        .printable-page {
+            width: 100%;
+            max-width: 816px;
+            min-height: 1056px;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased h-screen flex flex-col overflow-hidden">
+
+    <header class="no-print bg-slate-900 text-white px-4 py-3 flex flex-wrap items-center justify-between shadow-md z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-between p-1 overflow-hidden">
+                <span class="text-xs font-bold text-yellow-300">🇨🇴</span>
+                <span class="text-xs font-bold text-blue-300">✝️</span>
+            </div>
+            <div>
+                <h1 class="text-sm md:text-base font-bold tracking-tight">Carácter de Dios para mi País</h1>
+                <p class="text-xs text-slate-400">Manual de Discipulado Colombiano • Formato Carta 🇨🇴</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-2 mt-2 md:mt-0">
+            <div class="bg-slate-800 p-1 rounded-lg flex items-center gap-1 border border-slate-700">
+                <button id="btn-mode-book" onclick="switchView('book')" class="px-3 py-1 rounded text-xs font-medium bg-indigo-600 text-white transition flex items-center gap-1">
+                    <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Libro Digital
+                </button>
+                <button id="btn-mode-scroll" onclick="switchView('scroll')" class="px-3 py-1 rounded text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Continuo
+                </button>
+            </div>
+            <button onclick="triggerPrint()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow transition">
+                <i data-lucide="printer" class="w-4 h-4"></i> Imprimir en Carta (US Letter)
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex overflow-hidden">
+        
+        <div class="flex-1 overflow-y-auto p-4 md:p-6 flex justify-center no-scrollbar bg-slate-150" id="manual-scroller">
+            <div class="w-full flex flex-col items-center gap-6 print-area" id="document-container">
+                
+                <div id="page-1" class="printable-page p-10 md:p-14 flex flex-col justify-between items-center text-center">
+                    <div class="w-full">
+                        <div class="flex justify-center gap-1.5 mb-6">
+                            <span class="w-14 h-2 bg-yellow-400 rounded-full"></span>
+                            <span class="w-14 h-2 bg-blue-500 rounded-full"></span>
+                            <span class="w-14 h-2 bg-red-500 rounded-full"></span>
+                        </div>
+                        <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 mb-2">Herramienta de Evangelismo y Discipulado</p>
+                        <h1 class="serif-title text-4xl md:text-5xl font-black text-slate-900 leading-tight mt-1">CARÁCTER DE DIOS PARA MI PAÍS</h1>
+                        <p class="text-base text-slate-500 font-medium italic mt-2">"Hacia una Colombia transformada a la medida del corazón de Cristo"</p>
+                    </div>
+
+                    <div class="my-6 max-w-md p-5 bg-slate-50 rounded-2xl border border-slate-100 italic text-slate-650 citation-box">
+                        <p class="text-sm font-semibold">"Y me serán por pueblo, y yo seré a ellos por Dios."</p>
+                        <p class="text-xs font-bold text-slate-400 mt-2">— Jeremías 32:38</p>
+                    </div>
+
+                    <div class="w-full border-t border-slate-100 pt-6">
+                        <div class="grid grid-cols-2 gap-4 text-left max-w-lg mx-auto">
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-wider">Diseño y Teología:</p>
+                                <p class="text-xs font-bold text-slate-700">Misioneros Bautistas de Colombia</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-wider">Acción y Servicio Integral:</p>
+                                <p class="text-xs font-bold text-indigo-600">Ministerio Salud Hoy</p>
+                            </div>
+                        </div>
+                        <p class="text-[9px] text-slate-400 mt-6">Colombia • Versión Carta 3.1 • Todos los derechos reservados para el Reino de Dios</p>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-2" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg"><i data-lucide="list-ordered" class="w-4 h-4"></i></span>
+                            <h2 class="text-xl font-bold tracking-tight text-slate-950">ÍNDICE GENERAL</h2>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-6 italic">Este manual está diagramado para que cada sección sea autocontenida y se entregue de forma individual en hojas de tamaño Carta.</p>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 3</span>
+                                    <span class="text-xs font-semibold text-slate-800">1. Introducción y Metodología Práctica</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Fundamento Bíblico</span>
+                            </div>
+
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 4</span>
+                                    <span class="text-xs font-semibold text-slate-800">2. Sección I (Parte 1) — Amarillo: Dios es Luz</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">1 Juan 1:5-10</span>
+                            </div>
+
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 5</span>
+                                    <span class="text-xs font-semibold text-slate-800">3. Sección I (Parte 2) — Amarillo: Dios es Justo</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Mateo 21:33-42</span>
+                            </div>
+
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 6</span>
+                                    <span class="text-xs font-semibold text-slate-800">4. Sección II — Azul: Dios es Compasivo y Piadoso</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Marcos 1:40-45</span>
+                            </div>
+
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 7</span>
+                                    <span class="text-xs font-semibold text-slate-800">5. Sección III — Rojo: Dios es Amor y Sacrificio</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">1 Juan 4:7-11</span>
+                            </div>
+
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 8</span>
+                                    <span class="text-xs font-semibold text-slate-800">6. Guía Práctica del "Brazalete Colombia"</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Hoja del Evangelista</span>
+                            </div>
+
+                            <div class="flex justify-between items-end border-b border-dashed border-slate-200 pb-1.5">
+                                <div>
+                                    <span class="text-xs font-bold text-indigo-600 mr-2">Pág. 9</span>
+                                    <span class="text-xs font-semibold text-slate-800">7. Ministerio Salud Hoy — Fe en Acción Integral</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Servicio y Promoción</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-indigo-50/50 rounded-xl border border-indigo-100 flex gap-3 items-center">
+                        <i data-lucide="info" class="w-4 h-4 text-indigo-600 shrink-0"></i>
+                        <p class="text-[11px] text-slate-600 leading-normal"><strong>Nota de impresión:</strong> Este documento está optimizado para papel tamaño Carta. Asegúrate de configurar el tamaño "Carta" (Letter) en tu impresora antes de imprimir.</p>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-3" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="p-1.5 bg-slate-100 text-slate-700 rounded-lg"><i data-lucide="book-open-check" class="w-4 h-4"></i></span>
+                            <h2 class="text-lg font-bold tracking-tight text-slate-900">1. INTRODUCCIÓN Y METODOLOGÍA</h2>
+                        </div>
+                        
+                        <div class="space-y-3.5 text-xs text-slate-700 leading-relaxed text-justify">
+                            <p>
+                                La bandera de Colombia es mucho más que un emblema de identidad civil; es un espejo de la historia, las riquezas y el diseño original de nuestro país. No obstante, bajo una perspectiva misional y evangelística, descubrimos que Dios en su gracia y soberanía ha plasmado los colores de nuestra bandera para hablarnos directamente de su carácter eterno y de su perfecta voluntad para transformar nuestra nación.
+                            </p>
+                            <p>
+                                Este manual ha sido estructurado para ser utilizado como una guía práctica de discipulado personal, grupos pequeños u hogares de paz. Su metodología está basada en el <strong>Estudio Bíblico Inductivo</strong>, el cual promueve el aprendizaje dinámico y participativo mediante tres pasos esenciales:
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
+                                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                                    <div class="flex items-center gap-1.5 mb-1 text-indigo-600">
+                                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                        <h4 class="text-[10px] font-bold uppercase tracking-wider">1. Observar</h4>
+                                    </div>
+                                    <p class="text-[10px] text-slate-600 leading-snug">Leemos el texto con detenimiento para identificar claramente los personajes, palabras clave y qué es lo que ocurre en la historia.</p>
+                                </div>
+                                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                                    <div class="flex items-center gap-1.5 mb-1 text-indigo-600">
+                                        <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                                        <h4 class="text-[10px] font-bold uppercase tracking-wider">2. Interpretar</h4>
+                                    </div>
+                                    <p class="text-[10px] text-slate-600 leading-snug">Analizamos el significado espiritual del pasaje para comprender exactamente qué nos enseña sobre Dios y sobre la humanidad.</p>
+                                </div>
+                                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                                    <div class="flex items-center gap-1.5 mb-1 text-indigo-600">
+                                        <i data-lucide="target" class="w-3.5 h-3.5"></i>
+                                        <h4 class="text-[10px] font-bold uppercase tracking-wider">3. Aplicar</h4>
+                                    </div>
+                                    <p class="text-[10px] text-slate-600 leading-snug">Llevamos las verdades eternas descubiertas a decisiones concretas, medibles y transformadoras para nuestra vida diaria.</p>
+                                </div>
+                            </div>
+
+                            <p>
+                                Esperamos que cada hoja de este manual sirva como una herramienta de restauración para levantar vidas conformes al corazón de Dios en toda Colombia, sanando no solo las almas sino también las comunidades de forma integral a través del servicio activo impulsado por el <strong>Ministerio Salud Hoy</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-4" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-yellow-200 pb-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-5 bg-yellow-400 rounded-full"></span>
+                                <h2 class="text-base font-bold tracking-tight text-slate-900">SECCIÓN I (Parte 1) — AMARILLO: DIOS ES LUZ</h2>
+                            </div>
+                            <span class="text-[10px] font-bold text-yellow-600 uppercase">Santidad y Verdad</span>
+                        </div>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3 text-justify">
+                            Tradicionalmente, el amarillo representa la gran riqueza de nuestro suelo patrio. Sin embargo, aunque Colombia es una tierra bendecida, la realidad social nos confronta con la oscuridad moral y el pecado. En las Escrituras, el amarillo nos recuerda que <strong>Dios es Luz</strong>. Él desea disipar toda tiniebla espiritual de nuestra vida y de nuestro país, trayendo su verdad revelada.
+                        </p>
+
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full border border-yellow-100 text-[11px]">
+                                <thead>
+                                    <tr class="bg-yellow-50 text-yellow-800 font-bold border-b border-yellow-200">
+                                        <th class="p-1.5 text-left" style="width: 25%;">Enfoque</th>
+                                        <th class="p-1.5 text-left" style="width: 40%;">Preparación Espiritual</th>
+                                        <th class="p-1.5 text-left" style="width: 35%;">Pasaje Clave</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-slate-600">
+                                        <td class="p-1.5 font-bold text-slate-800">Dios es Luz Perfecta</td>
+                                        <td class="p-1.5"><strong>Hablar con Dios:</strong> Pídele al Espíritu que exponga tus áreas de debilidad y te guíe a caminar en honestidad absoluta.</td>
+                                        <td class="p-1.5 italic font-medium text-slate-800"><strong>Juan 8:12</strong><br>"Yo soy la luz del mundo; el que me sigue, no andará en tinieblas..."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-yellow-50/50 p-3 rounded-xl border-l-4 border-yellow-400 mb-4 text-xs text-slate-700 leading-relaxed text-justify">
+                            <p class="font-bold mb-1 text-yellow-800">📖 Lectura de la Palabra: 1 Juan 1:5-10</p>
+                            <p class="italic">
+                                "5 Éste es el mensaje que hemos oído de él y que les anunciamos: Dios es luz y en él no hay ninguna oscuridad. 6 Si afirmamos que tenemos comunión con él, pero vivimos en la oscuridad, mentimos y no ponemos en práctica la verdad. 7 Pero si vivimos en la luz, así como él está en la luz, tenemos comunión unos con otros, y la sangre de su Hijo Jesucristo nos limpia de todo pecado..."
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-[11px] font-bold text-indigo-900 uppercase tracking-wider">🗣️ Preguntas (Observar e Interpretar)</h4>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 space-y-1">
+                                <li>¿Qué verdad o palabra llamó más tu atención al observar esta porción bíblica?</li>
+                                <li>¿Existe alguna expresión o concepto que te cueste comprender o que te confronte?</li>
+                                <li>Según el pasaje, ¿cuál es la verdadera condición del ser humano cuando pretende ocultar su pecado?</li>
+                                <li>¿De qué manera este texto te muestra la fidelidad, santidad y amor de Dios?</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-3 bg-slate-50/50">
+                        <h4 class="text-[11px] font-bold text-indigo-900 uppercase mb-2 flex items-center gap-1"><i data-lucide="target" class="w-3 h-3"></i> Mi Aplicación Práctica</h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>1. ¿Qué acción específica tomarás esta semana para caminar de forma transparente y honesta en tu hogar o trabajo?</strong></p>
+                                <div class="border-b border-slate-300 w-full h-4"></div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>2. ¿A qué persona le compartirás esta semana que Dios puede traer luz a su vida?</strong></p>
+                                <p class="text-slate-450 italic text-[11px]">Nombre del contacto: __________________________________________________________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-5" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-yellow-200 pb-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-5 bg-yellow-400 rounded-full"></span>
+                                <h2 class="text-base font-bold tracking-tight text-slate-900">SECCIÓN I (Parte 2) — AMARILLO: DIOS ES JUSTO</h2>
+                            </div>
+                            <span class="text-[10px] font-bold text-yellow-600 uppercase">Rectitud y Orden</span>
+                        </div>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3 text-justify">
+                            El color amarillo nos recuerda también que <strong>Dios es Justo</strong>. Lamentablemente, nuestra nación se ha visto golpeada por la impunidad y la injusticia social. Pero la justicia de Dios no es indiferente; Él demanda un comportamiento íntegro y nos llama a rendir cuentas por la forma en que administramos su creación. A través de la Parábola de los labradores malvados, Jesús expone que el desprecio de las normas divinas siempre trae consecuencias.
+                        </p>
+
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full border border-yellow-100 text-[11px]">
+                                <thead>
+                                    <tr class="bg-yellow-50 text-yellow-800 font-bold border-b border-yellow-200">
+                                        <th class="p-1.5 text-left" style="width: 25%;">Enfoque</th>
+                                        <th class="p-1.5 text-left" style="width: 40%;">Preparación Espiritual</th>
+                                        <th class="p-1.5 text-left" style="width: 35%;">Pasaje Clave</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-slate-600">
+                                        <td class="p-1.5 font-bold text-slate-800">Dios es Rectitud</td>
+                                        <td class="p-1.5"><strong>Hablar con Dios:</strong> Pide al Señor que examine tu trato hacia los demás y que limpie tu corazón de toda codicia o injusticia.</td>
+                                        <td class="p-1.5 italic font-medium text-slate-800"><strong>Salmo 89:14</strong><br>"La justicia y el derecho son el fundamento de tu trono..."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-yellow-50/50 p-3 rounded-xl border-l-4 border-yellow-400 mb-4 text-xs text-slate-700 leading-relaxed text-justify">
+                            <p class="font-bold mb-1 text-yellow-800">📖 Lectura de la Palabra: Mateo 21:33-42</p>
+                            <p class="italic">
+                                "33 Escuchen otra parábola: Había un propietario que plantó un viñedo... Luego arrendó el viñedo a unos labradores... 37 Por último, les mandó a su propio hijo, pensando: “¡A mi hijo sí lo respetarán!” 38 Pero... lo mataron. 40 Ahora bien, cuando vuelva el dueño, ¿qué hará con esos labradores? 41 —Hará que esos malvados tengan un fin miserable..."
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-[11px] font-bold text-indigo-900 uppercase tracking-wider">🗣️ Preguntas (Observar e Interpretar)</h4>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 space-y-1">
+                                <li>¿Qué actitudes de los labradores o del dueño del viñedo te sorprendieron más al observar el relato?</li>
+                                <li>¿Por qué crees que a la gente le resulta difícil aceptar la justa autoridad de Dios sobre sus vidas?</li>
+                                <li>¿Cómo ilustra esta parábola el rechazo histórico del ser humano hacia Jesucristo?</li>
+                                <li>¿Qué nos enseña este texto bíblico acerca de las consecuencias de la injusticia?</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-3 bg-slate-50/50">
+                        <h4 class="text-[11px] font-bold text-indigo-900 uppercase mb-2 flex items-center gap-1"><i data-lucide="target" class="w-3 h-3"></i> Mi Aplicación Práctica</h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>1. ¿En qué área de tus relaciones (familiar, laboral o comercial) actuarás con absoluta rectitud esta semana?</strong></p>
+                                <div class="border-b border-slate-300 w-full h-4"></div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>2. ¿Con quién conversarás esta semana para presentar a Jesucristo como la Piedra Angular de tu vida?</strong></p>
+                                <p class="text-slate-450 italic text-[11px]">Nombre del contacto: __________________________________________________________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-6" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-blue-200 pb-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-5 bg-blue-500 rounded-full"></span>
+                                <h2 class="text-base font-bold tracking-tight text-slate-900">SECCIÓN II — AZUL: DIOS ES COMPASIVO Y PIADOSO</h2>
+                            </div>
+                            <span class="text-[10px] font-bold text-blue-600 uppercase">Misericordia y Dignidad</span>
+                        </div>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3 text-justify">
+                            El color azul de nuestro pabellón representa los cielos despejados, nuestros ríos y océanos. No obstante, en un triste contraste social, muchas comunidades de nuestro país carecen de agua limpia física y espiritual. El azul nos recuerda que <strong>Dios es Compasivo y Piadoso</strong>. Él no es indiferente ante el sufrimiento del necesitado; al contrario, su misericordia fluye activamente para rescatar, sanar y restaurar la dignidad humana.
+                        </p>
+
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full border border-blue-100 text-[11px]">
+                                <thead>
+                                    <tr class="bg-blue-50 text-blue-800 font-bold border-b border-blue-200">
+                                        <th class="p-1.5 text-left" style="width: 25%;">Enfoque</th>
+                                        <th class="p-1.5 text-left" style="width: 40%;">Preparación Espiritual</th>
+                                        <th class="p-1.5 text-left" style="width: 35%;">Pasaje Clave</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-slate-600">
+                                        <td class="p-1.5 font-bold text-slate-800">Amor en Acción</td>
+                                        <td class="p-1.5"><strong>Hablar con Dios:</strong> Clama por un corazón sensible, capaz de conmoverse ante las dolencias de los desamparados en tu entorno.</td>
+                                        <td class="p-1.5 italic font-medium text-slate-800"><strong>Mateo 9:36</strong><br>"Y al ver las multitudes, tuvo compasión de ellas..."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-blue-50/50 p-3 rounded-xl border-l-4 border-blue-500 mb-4 text-xs text-slate-700 leading-relaxed text-justify">
+                            <p class="font-bold mb-1 text-blue-800">📖 Lectura de la Palabra: Marcos 1:40-45</p>
+                            <p class="italic">
+                                "40 Un hombre que tenía lepra se le acercó, y de rodillas le suplicó: —Si quieres, puedes limpiarme. 41 Movido a compasión, Jesús extendió la mano y tocó al hombre, diciéndole: —Sí quiero. ¡Queda limpio! 42 Al instante se le quitó la lepra y quedó sano. 43 Jesús lo despidió..."
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-[11px] font-bold text-indigo-900 uppercase tracking-wider">🗣️ Preguntas (Observar e Interpretar)</h4>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 space-y-1">
+                                <li>¿Qué te conmueve de la actitud del leproso y de la respuesta de Jesús?</li>
+                                <li>¿Por qué crees que el acto de "tocar" al leproso fue un gesto tan radical en esa época?</li>
+                                <li>¿De qué maneras espirituales y sociales la humanidad vive marginada hoy?</li>
+                                <li>¿De qué forma este milagro describe la voluntad de Dios para sanar lo que está roto?</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-3 bg-slate-50/50">
+                        <h4 class="text-[11px] font-bold text-indigo-900 uppercase mb-2 flex items-center gap-1"><i data-lucide="target" class="w-3 h-3"></i> Mi Aplicación Práctica</h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>1. ¿Qué acto concreto de compasión o servicio realizarás esta semana por alguien necesitado?</strong></p>
+                                <div class="border-b border-slate-300 w-full h-4"></div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>2. ¿Por qué persona vulnerable o enferma te comprometes a orar y visitar durante estos días?</strong></p>
+                                <p class="text-slate-450 italic text-[11px]">Nombre del contacto: __________________________________________________________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-7" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-red-200 pb-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-5 bg-red-500 rounded-full"></span>
+                                <h2 class="text-base font-bold tracking-tight text-slate-900">SECCIÓN III — ROJO: DIOS ES AMOR Y SACRIFICIO</h2>
+                            </div>
+                            <span class="text-[10px] font-bold text-red-600 uppercase">Redención y Libertad</span>
+                        </div>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3 text-justify">
+                            Históricamente, el color rojo simboliza la sangre de los próceres de la independencia. Sin embargo, por causa del pecado, nuestras tierras han sido dolorosamente manchadas por la violencia. El rojo cobra su máximo valor espiritual cuando contemplamos que <strong>Dios es Amor y Sacrificio</strong>. Jesús derramó su sangre perfecta en la cruz para perdonarnos y otorgarnos verdadera libertad. Su sacrificio nos enseña que el amor bíblico es abnegación activa.
+                        </p>
+
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full border border-red-100 text-[11px]">
+                                <thead>
+                                    <tr class="bg-red-50 text-red-800 font-bold border-b border-red-200">
+                                        <th class="p-1.5 text-left" style="width: 25%;">Enfoque</th>
+                                        <th class="p-1.5 text-left" style="width: 40%;">Preparación Espiritual</th>
+                                        <th class="p-1.5 text-left" style="width: 35%;">Pasaje Clave</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-slate-600">
+                                        <td class="p-1.5 font-bold text-slate-800">Amor Sacrificial</td>
+                                        <td class="p-1.5"><strong>Hablar con Dios:</strong> Pídele que limpie tu vida de egoísmos, capacitándote para amar de manera práctica aun cuando requiera esfuerzo.</td>
+                                        <td class="p-1.5 italic font-medium text-slate-800"><strong>1 Juan 4:11</strong><br>"Queridos hermanos, ya que Dios nos ha amado así, nosotros debemos..."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-red-50/50 p-3 rounded-xl border-l-4 border-red-500 mb-4 text-xs text-slate-700 leading-relaxed text-justify">
+                            <p class="font-bold mb-1 text-red-800">📖 Lectura de la Palabra: 1 Juan 4:7-11</p>
+                            <p class="italic">
+                                "7 Queridos hermanos, amémonos los unos a los otros, porque el amor viene de Dios... 8 El que no ama no conoce a Dios, porque Dios es amor. 9 Así manifestó Dios su amor entre nosotros: en que envió a su Hijo unigénito al mundo para que vivamos por medio de él..."
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 mb-4">
+                            <h4 class="text-[11px] font-bold text-indigo-900 uppercase tracking-wider">🗣️ Preguntas (Observar e Interpretar)</h4>
+                            <ol class="list-decimal pl-5 text-xs text-slate-600 space-y-1">
+                                <li>¿Qué características del amor divino te desafían más en este pasaje?</li>
+                                <li>¿Qué diferencias distingues entre el amor del mundo y el amor sacrificial de Dios en la cruz?</li>
+                                <li>¿Por qué resulta imposible amar verdaderamente a las personas si no conocemos primero a Dios?</li>
+                                <li>¿De qué forma este pasaje muestra la demostración de amor más radical de la historia?</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-3 bg-slate-50/50">
+                        <h4 class="text-[11px] font-bold text-indigo-900 uppercase mb-2 flex items-center gap-1"><i data-lucide="target" class="w-3 h-3"></i> Mi Aplicación Práctica</h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>1. ¿Qué sacrificio personal de tu tiempo, orgullo o recursos harás esta semana por un ser querido?</strong></p>
+                                <div class="border-b border-slate-300 w-full h-4"></div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 mb-0.5"><strong>2. ¿A quién a tu alrededor le recordarás que es profundamente amado por Jesucristo?</strong></p>
+                                <p class="text-slate-450 italic text-[11px]">Nombre del contacto: __________________________________________________________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-8" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="p-1 bg-slate-100 rounded text-slate-700"><i data-lucide="pocket" class="w-4 h-4"></i></span>
+                                <h2 class="text-base font-bold tracking-tight text-slate-900">6. GUÍA DEL "BRAZALETE COLOMBIA"</h2>
+                            </div>
+                            <span class="text-[10px] font-bold text-slate-500 uppercase">Uso Evangelístico</span>
+                        </div>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-4 text-justify">
+                            El <strong>Brazalete Colombia</strong> es un puente relacional extraordinario. Al colocar el brazalete tricolor en la muñeca de la persona, se genera una conexión visual inmediata. Usa la siguiente guía para guiar la conversación:
+                        </p>
+
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full border border-slate-200 text-[11px] leading-tight">
+                                <thead>
+                                    <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-300">
+                                        <th class="p-1.5 text-left" style="width: 15%;">Color</th>
+                                        <th class="p-1.5 text-left" style="width: 25%;">Significado Civil</th>
+                                        <th class="p-1.5 text-left" style="width: 30%;">Realidad Humana</th>
+                                        <th class="p-1.5 text-left" style="width: 30%;">Esperanza en Dios</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-200">
+                                        <td class="p-1.5 font-bold text-yellow-700 bg-yellow-50/50">AMARILLO</td>
+                                        <td class="p-1.5">Riqueza del suelo.</td>
+                                        <td class="p-1.5">Oscuridad espiritual, corrupción, egoísmo.</td>
+                                        <td class="p-1.5"><strong>Dios es Luz y Justo:</strong> Revela la santidad y exige rectitud. (Juan 8:12)</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-200">
+                                        <td class="p-1.5 font-bold text-blue-700 bg-blue-50/50">AZUL</td>
+                                        <td class="p-1.5">Cielos, ríos y océanos.</td>
+                                        <td class="p-1.5">Comunidades marginadas sin agua ni esperanza.</td>
+                                        <td class="p-1.5"><strong>Dios es Compasivo:</strong> Se duele de nuestro dolor y nos restaura. (Mateo 9:36)</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-200">
+                                        <td class="p-1.5 font-bold text-red-700 bg-red-50/50">ROJO</td>
+                                        <td class="p-1.5">Sangre derramada por la libertad civil.</td>
+                                        <td class="p-1.5">Violencia constante y dolor en nuestras calles.</td>
+                                        <td class="p-1.5"><strong>Dios es Amor y Sacrificio:</strong> La cruz nos limpia y nos da paz. (1 Juan 4:11)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-xs font-bold text-indigo-900 uppercase tracking-wider flex items-center gap-1">💡 Pautas de Oro para Compartir la Fe:</h3>
+                            <ul class="list-disc pl-5 text-[11px] text-slate-600 space-y-1.5">
+                                <li><strong>Actitud Pastoral y Empática:</strong> Comienza conversando sobre el amor que sientes por Colombia. Escucha activamente a la persona antes de presentar la verdad bíblica.</li>
+                                <li><strong>Preguntas de Reflexión:</strong> Pídele que mire el brazalete: <em>"¿Crees que el cambio de nuestro país empieza en el corazón de cada persona? ¿Cómo está tu corazón hoy delante de Dios?"</em></li>
+                                <li><strong>Llamado al Arrepentimiento:</strong> Muestra el sacrificio en la cruz (rojo) y guíale a recibir el perdón de sus pecados (amarillo) mediante la fe en Jesús.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-2.5 bg-indigo-50/50 border border-indigo-100 rounded-xl mt-4">
+                        <p class="text-[10px] text-slate-500 leading-normal"><strong>Sugerencia práctica:</strong> Al final, obsequia el brazalete como un recordatorio del pacto de fe para que esa persona ore diariamente por la paz y transformación de nuestra amada Colombia.</p>
+                    </div>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div id="page-9" class="printable-page p-10 md:p-14 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-emerald-200 pb-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="p-1 bg-emerald-50 rounded text-emerald-600"><i data-lucide="heart-pulse" class="w-4 h-4"></i></span>
+                                <h2 class="text-base font-bold tracking-tight text-slate-900">7. MINISTERIO SALUD HOY: FE EN ACCIÓN INTEGRAL</h2>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-600 uppercase">Salud y Testimonio</span>
+                        </div>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3 text-justify">
+                            La fe cristiana bíblica nunca ha sido un mero ejercicio intelectual. Nuestro Salvador Jesucristo demostró su amor predicando las buenas nuevas y sanando a los enfermos, dando de comer a los hambrientos y restaurando el tejido familiar y social. Siguiendo ese modelo integral de misericordia, nos unimos como misioneros con proyectos prácticos de compasión.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3 text-justify">
+                            Por ello, servimos bajo el <strong>Ministerio Salud Hoy</strong>, encargado de llevar educación sanitaria básica y prevención médica comunitaria a las poblaciones más marginadas de nuestra patria.
+                        </p>
+
+                        <div class="space-y-3 my-4">
+                            <div class="flex items-start gap-2.5">
+                                <div class="p-0.5 bg-emerald-50 rounded text-emerald-600 mt-0.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i></div>
+                                <div>
+                                    <h4 class="text-[11px] font-bold text-slate-900">Educación en Salud Comunitaria</h4>
+                                    <p class="text-[11px] text-slate-600">Capacitamos a las familias vulnerables en hábitos de higiene, nutrición correcta y prevención activa de enfermedades recurrentes.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <div class="p-0.5 bg-emerald-50 rounded text-emerald-600 mt-0.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i></div>
+                                <div>
+                                    <h4 class="text-[11px] font-bold text-slate-900">Práctica de la Compasión (Azul)</h4>
+                                    <p class="text-[11px] text-slate-600">Llevamos filtros de agua, suministros y brigadas de salud preventiva a comunidades que carecen de servicios básicos indispensables.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <div class="p-0.5 bg-emerald-50 rounded text-emerald-600 mt-0.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i></div>
+                                <div>
+                                    <h4 class="text-[11px] font-bold text-slate-900">Evangelismo Relacional (Rojo y Amarillo)</h4>
+                                    <p class="text-[11px] text-slate-600">Usar cada jornada comunitaria como un puente de amor sacrificial para abrir hogares de paz y guiar al pueblo hacia los pies del Salvador.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-3 text-center">
+                        <p class="text-xs text-emerald-950 leading-relaxed font-bold">
+                            "Al servir a través del Ministerio Salud Hoy, no solo aliviamos necesidades físicas temporales, sino que encarnamos la justicia, la compasión y el amor sacrificial de Dios en Colombia."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <aside class="no-print w-80 bg-slate-900 text-white border-l border-slate-800 flex flex-col justify-between p-4 hidden lg:flex">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="p-1.5 bg-indigo-900/50 text-indigo-400 rounded border border-indigo-800"><i data-lucide="activity" class="w-4 h-4"></i></span>
+                    <h3 class="text-sm font-bold">Herramienta de Entrenamiento</h3>
+                </div>
+                <p class="text-xs text-slate-400 mb-6 leading-relaxed">Usa este simulador virtual para repasar las secciones de la bandera con un contacto antes de salir a la calle.</p>
+
+                <div class="space-y-4">
+                    <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Toca un color para simular la conversación:</p>
+                    
+                    <button onclick="selectThread('amarillo')" class="w-full text-left p-3 rounded-xl bg-slate-800 border-l-4 border-yellow-400 hover:bg-slate-750 transition flex items-center justify-between group">
+                        <div>
+                            <p class="text-xs font-bold text-yellow-400">AMARILLO</p>
+                            <p class="text-[10px] text-slate-400">Dios es Luz y Justo</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-white transition"></i>
+                    </button>
+
+                    <button onclick="selectThread('azul')" class="w-full text-left p-3 rounded-xl bg-slate-800 border-l-4 border-blue-500 hover:bg-slate-750 transition flex items-center justify-between group">
+                        <div>
+                            <p class="text-xs font-bold text-blue-400">AZUL</p>
+                            <p class="text-[10px] text-slate-400">Dios es Compasivo</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-white transition"></i>
+                    </button>
+
+                    <button onclick="selectThread('rojo')" class="w-full text-left p-3 rounded-xl bg-slate-800 border-l-4 border-red-500 hover:bg-slate-750 transition flex items-center justify-between group">
+                        <div>
+                            <p class="text-xs font-bold text-red-400">ROJO</p>
+                            <p class="text-[10px] text-slate-400">Dios es Amor y Sacrificio</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-white transition"></i>
+                    </button>
+                </div>
+
+                <div id="thread-display" class="mt-6 p-4 bg-slate-800/50 rounded-xl border border-slate-800 text-xs hidden">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="badge-color" class="w-2.5 h-2.5 rounded-full"></span>
+                        <h4 id="thread-title" class="font-bold uppercase tracking-wider">Selecciona un color</h4>
+                    </div>
+                    <p id="thread-text" class="text-slate-300 leading-relaxed mb-3"></p>
+                    <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
+                        <p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Pasajes de Apoyo:</p>
+                        <p id="thread-verse" class="text-xs italic text-indigo-300"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-850 text-center">
+                <p class="text-[11px] text-emerald-400 font-bold mb-1">Ministerio Salud Hoy</p>
+                <p class="text-[9px] text-slate-500">Compasión y Salud al servicio del Evangelio.</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer id="book-navigator" class="no-print bg-white border-t border-slate-200 py-3 px-4 flex items-center justify-between z-40">
+        <button id="btn-prev" onclick="prevPage()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold transition flex items-center gap-1.5 disabled:opacity-50">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Hoja Anterior
+        </button>
+        
+        <span id="page-indicator" class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+            Hoja 1 de 9 (Portada)
+        </span>
+
+        <button id="btn-next" onclick="nextPage()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5 disabled:opacity-50">
+            Siguiente Hoja <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+    </footer>
+
+    <div id="print-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-[100] px-4">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-4 mx-auto">
+                <i data-lucide="printer" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 text-center mb-2">Imprimir Manual</h3>
+            <p class="text-sm text-slate-600 text-center mb-6 leading-relaxed">
+                Para imprimir el documento en Tamaño Carta, presiona en tu teclado: <br><br>
+                <kbd class="px-2 py-1 bg-slate-100 border border-slate-300 rounded font-mono text-sm text-slate-800">Ctrl</kbd> + <kbd class="px-2 py-1 bg-slate-100 border border-slate-300 rounded font-mono text-sm text-slate-800">P</kbd> <br><span class="text-xs text-slate-400">(Cmd + P en Mac)</span>
+            </p>
+            <button onclick="closeModal()" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-sm font-bold shadow-md hover:bg-emerald-500 transition">
+                ¡Entendido!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentViewMode = 'book';
+        let activePageIndex = 1;
+        const totalPages = 9;
+        
+        const pageNames = [
+            "", "Portada", "Índice General", "1. Introducción y Metodología", "2. Amarillo - Dios es Luz", "3. Amarillo - Dios es Justo", "4. Azul - Dios es Compasivo", "5. Rojo - Dios es Amor", "6. Guía del Brazalete", "7. Ministerio Salud Hoy"
+        ];
+
+        function switchView(mode) {
+            currentViewMode = mode;
+            const bookNavigator = document.getElementById('book-navigator');
+            const scroller = document.getElementById('manual-scroller');
+            const btnBook = document.getElementById('btn-mode-book');
+            const btnScroll = document.getElementById('btn-mode-scroll');
+
+            if (mode === 'book') {
+                bookNavigator.style.display = 'flex';
+                scroller.classList.add('overflow-hidden');
+                scroller.scrollTop = 0;
+                btnBook.className = "px-3 py-1 rounded text-xs font-medium bg-indigo-600 text-white transition flex items-center gap-1";
+                btnScroll.className = "px-3 py-1 rounded text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1";
+                showPage(activePageIndex);
+            } else {
+                bookNavigator.style.display = 'none';
+                scroller.classList.remove('overflow-hidden');
+                btnBook.className = "px-3 py-1 rounded text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-1";
+                btnScroll.className = "px-3 py-1 rounded text-xs font-medium bg-indigo-600 text-white transition flex items-center gap-1";
+                for (let i = 1; i <= totalPages; i++) {
+                    const page = document.getElementById(`page-${i}`);
+                    if (page) page.classList.remove('hidden');
+                }
+            }
+        }
+
+        function showPage(index) {
+            if (currentViewMode !== 'book') return;
+            for (let i = 1; i <= totalPages; i++) {
+                const page = document.getElementById(`page-${i}`);
+                if (page) {
+                    if (i === index) {
+                        page.classList.remove('hidden');
+                    } else {
+                        page.classList.add('hidden');
+                    }
+                }
+            }
+            document.getElementById('btn-prev').disabled = (index === 1);
+            document.getElementById('btn-next').disabled = (index === totalPages);
+            document.getElementById('page-indicator').innerText = `Hoja ${index} de ${totalPages} (${pageNames[index]})`;
+            activePageIndex = index;
+        }
+
+        function nextPage() { if (activePageIndex < totalPages) showPage(activePageIndex + 1); }
+        function prevPage() { if (activePageIndex > 1) showPage(activePageIndex - 1); }
+
+        function triggerPrint() {
+            try {
+                window.print();
+            } catch (e) {
+                document.getElementById('print-modal').classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('print-modal').classList.add('hidden');
+        }
+
+        const threadData = {
+            amarillo: { title: "Amarillo: Dios es Luz y Justo", badge: "bg-yellow-400", text: "Habla sobre cómo Dios revela la verdad e ilumina nuestro país ante la corrupción y la mentira. Explica la necesidad de arrepentimiento genuino e integridad moral para sanar nuestra patria.", verse: "Juan 8:12 / Mateo 21:33-42" },
+            azul: { title: "Azul: Dios es Compasivo", badge: "bg-blue-500", text: "Reflexiona sobre la paradoja de tener las reservas de agua más ricas del planeta pero comunidades con sed. Muestra que Jesús tiene compasión de los desamparados y sana integralmente el dolor humano.", verse: "Mateo 9:36 / Marcos 1:40-45" },
+            rojo: { title: "Rojo: Dios es Amor Sacrificial", badge: "bg-red-500", text: "Frente al flagelo de la violencia que por décadas ha derramado sangre inocente, presenta la cruz de Cristo. Su amor sacrificial nos limpia del pecado y nos otorga libertad.", verse: "1 Juan 4:7-11" }
+        };
+
+        function selectThread(color) {
+            const data = threadData[color];
+            document.getElementById('thread-display').classList.remove('hidden');
+            document.getElementById('badge-color').className = `w-2.5 h-2.5 rounded-full ${data.badge}`;
+            document.getElementById('thread-title').innerText = data.title;
+            document.getElementById('thread-text').innerText = data.text;
+            document.getElementById('thread-verse').innerText = data.verse;
+        }
+
+        window.onload = function() { switchView('book'); };
+    </script>
+</body>
+</html>
             .print-area {
                 display: block !important;
                 width: 100% !important;
